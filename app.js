@@ -74,6 +74,20 @@ var server = http.createServer((req, res) => {
         });
     }
     else if (req.url == "/create" && req.method == "POST") {//TODO  /creat sayfasinda formdan bir veri girisi yaparsak çalisir.
+
+        const data = [];                         //TODO  Birden fazla buffer olabilir diye dizi tanımlıyoruz.
+
+        req.on("data", (chunk) => {              //TODO  on ile her bir buffer olayını yakaliyoruz. Veriler bir kerede yollanamiyor bu sebeple chunklara bolunuyor. Ornegin 4 chunk'a bolundu. İki chunkdan olusan gruplarda durak noktası olusturuluyor. Bu durak noktalarına Buffer deniyor ve on ile yakaliyoruz.
+            data.push(chunk);                    //TODO  push methodu ile chunk degiskenini data dizisine atadık.
+        })
+
+        req.on("end", () => {                    //TODO  Butun durak noktalari biter ve butun bilgiler server'a aktarilinca arrow calisir.
+            const result = Buffer.concat(data).toString();
+            const parsedData = result.split("=")[1];
+            console.log(parsedData);
+        });
+
+
         fs.appendFile("blogs.txt", "Deneme", (err) => {//TODO  blogs.txt dosyası varsa sonuna ekler, yoksa eğer oluşturur. 2. parametre ise dosyaya yazacağı değer.
             if (err) {                           //TODO  Egerki hata kodu donerse if blogu calisir.
                 console.log(err)
