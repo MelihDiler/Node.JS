@@ -1,20 +1,23 @@
 //                                     ---------- NODE.JS ----------
 
+//      ctrl + c ile node'u kapatabilirsin.
+//      node app.js ile çalıştırıyoruz.                          
 
 //*--------------------------------------------------------------------------------------------------------------------------------------------
 //*                                             HTTP MODULU
 //*--------------------------------------------------------------------------------------------------------------------------------------------
 
-var http = require("http");                      //*     http modulunu eklemis olduk.
+var http = require("http");                      //*     require ile http modulunu eklemis olduk. Bu modül, web sunucusu oluşturmak ve HTTP isteklerini işlemek için kullanılır.
 
-function requestListener(request, response) {    //*     Parametreler Talep ve Cevap
+var server = http.createServer((req, res) => {   //*     createserver ile server objesi olusturup "server" adli objeye atama yaptik. Bu objede bir request alip ona gore cevap(res) dondurecek. Parametreler Talep ve Cevap
+    console.log(req.url);                        //*     Bu tarayıcı console'unda değil node.js sunucusunda çalışır. Çıktı: /  -->  Sebebi locakhostta ana klasör olduğu için. Eğer ki web tarayıcısında 3000/Urunler yazarsak çıktı "/Urunler" olur.
+    res.write("<h1>ANA SAYFA</h1>");             //*     Geri döndürdüğümüz içeriği şimdilik kendimiz yazdık "ANA SAYFA".
+    res.end();                                   //*     HTTP yanıtını sonlandırır.
+})
 
-}
-
-
-
-
-var server = http.createServer(requestListener)  //*     createserver ile server objesi olusturup "server" adli objeye atama yaptik. Bu objede bir request alip ona gore cevap uretecek.
+server.listen(3000, () => {                      //*     server 3000 portu altında hizmete açtık
+    console.log("node.js server at port 3000");  //*     server 3000 portunun çalıştığını anlamak için altına bir kod yazdık.
+});
 
 
 //*--------------------------------------------------------------------------------------------------------------------------------------------
