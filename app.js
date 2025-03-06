@@ -91,7 +91,7 @@ var server = http.createServer((req, res) => {
             res.end();
         });
 
-    } else {                                       //TODO  Sorgu sartlar disinda olursa calisir.
+    } else {                                     //TODO  Sorgu sartlar disinda olursa calisir.
         fs.readFile("404.html", (error, html) => {
             res.writeHead(404, { "Content-Type": "text/html" });
             res.write(html);
