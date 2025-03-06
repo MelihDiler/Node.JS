@@ -84,7 +84,7 @@ var server = http.createServer((req, res) => {
             }
         })
     }
-    else if (req.url == "/create") {            //TODO  Sorgu sadece create olursa calisir.
+    else if (req.url == "/create") {             //TODO  Sorgu sadece create olursa calisir.
         fs.readFile("create.html", (error, html) => {//TODO  1. parametre okunacak olan dosya. Okuma islemi bittikten sonra 2. parametre olan arrow function calisir. function arrow icindeki 2. parametre olan htmli de asagida kullaniyoruz. Ilk if'te direkt yazmistik. Arrow'un 1. parametresini hata döndürme olarak ilerde deneyeceğiz.
             res.writeHead(200, { "Content-Type": "text/html" });
             res.write(html);
