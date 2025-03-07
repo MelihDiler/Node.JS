@@ -82,21 +82,22 @@ var server = http.createServer((req, res) => {
         })
 
         req.on("end", () => {                    //TODO  Butun durak noktalari biter ve butun bilgiler server'a aktarilinca arrow calisir.
-            const result = Buffer.concat(data).toString();
-            const parsedData = result.split("=")[1];
-            console.log(parsedData);
+            const result = Buffer.concat(data).toString();//TODO  Buffer.concat ile buffer'lari birlestirip ardindan binary oldugu icin stringe cevirdik.  
+            const parsedData = result.split("=")[1];//TODO  result degiskeninin ciktisi "title=abcd" abcd=form kısmına yazdigin deger. Bizde = ile diziyi bolup 1. indeksi alarak sadece form tarafına girilen degeri almis olduk.
+
+            fs.appendFile("blogs.txt", parsedData, (err) => {//TODO  blogs.txt dosyası varsa sonuna ekler, yoksa eğer oluşturur. 2. parametre ise dosyaya yazacağı değer.
+                if (err) {                           //TODO  Egerki hata kodu donerse if blogu calisir.
+                    console.log(err)
+                } else {
+                    res.statusCode = 302;            //TODO  302 ile yonlendirme gerceeklestirdik.
+                    res.setHeader("Location", "/");  //TODO  Ana sayfaya yönlendirdik.
+                    res.end();
+                }
+            })
         });
 
 
-        fs.appendFile("blogs.txt", "Deneme", (err) => {//TODO  blogs.txt dosyası varsa sonuna ekler, yoksa eğer oluşturur. 2. parametre ise dosyaya yazacağı değer.
-            if (err) {                           //TODO  Egerki hata kodu donerse if blogu calisir.
-                console.log(err)
-            } else {
-                res.statusCode = 302;            //TODO  302 ile yonlendirme gerceeklestirdik.
-                res.setHeader("Location", "/");  //TODO  Ana sayfaya yönlendirdik.
-                res.end();
-            }
-        })
+
     }
     else if (req.url == "/create") {             //TODO  Sorgu sadece create olursa calisir.
         fs.readFile("create.html", (error, html) => {//TODO  1. parametre okunacak olan dosya. Okuma islemi bittikten sonra 2. parametre olan arrow function calisir. function arrow icindeki 2. parametre olan htmli de asagida kullaniyoruz. Ilk if'te direkt yazmistik. Arrow'un 1. parametresini hata döndürme olarak ilerde deneyeceğiz.
