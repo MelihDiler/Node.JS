@@ -30,6 +30,34 @@
 
 //TODO  Middleware, Express.js gibi çerçevelerde istekler işlenirken araya girip ekstra işlemler yapan özel fonksiyonlardır.
 
+// const express = require("express");              //*     Kutuphaneyi ekledik.
+
+// const app = express();                           //*     expres'in icindekiler export edildiği icin fonksiyona karsilik geliyor. Bir uygulamaya ihtiyacimiz oldugu icinde "app" ile uygulama tanimladik.
+
+// app.use((req, res, next) => {                    //*     use komutu her istek icin calisacak bir fonksiyon ekler.
+//     console.log("Middleware 1");                 //*     console'a calistigini kontrol etmek icin calistirdik.
+//     next();                                      //*     Bir sonraki katmana gecisi saglar.
+// });
+
+// app.use((req, res, next) => {                    //*     use komutu her istek icin calisacak bir fonksiyon ekler.
+//     console.log("Middleware 2");                 //*     console'a calistigini kontrol etmek icin calistirdik.
+//     next();                                      //*     Bir sonraki katmana gecisi saglar.
+// });
+
+// app.use((req, res, next) => {                    //*     use komutu her istek icin calisacak bir fonksiyon ekler.
+//     console.log("Middleware 3");                 //*     console'a calistigini kontrol etmek icin calistirdik.
+//     res.send("<h1>homepage</h1>");               //*     send hem mesaj yollar hem de end gorevi gorur.
+// });
+
+// app.listen(3000, function () {
+//     console.log("listening on port 3000");
+// });
+
+//TODO-----------------------------------------------------------------------------------------------------------------------------------------
+//!--------------------------------------------------------------------------------------------------------------------------------------------
+//!                                               ROUTING
+//!--------------------------------------------------------------------------------------------------------------------------------------------
+
 const express = require("express");              //*     Kutuphaneyi ekledik.
 
 const app = express();                           //*     expres'in icindekiler export edildiği icin fonksiyona karsilik geliyor. Bir uygulamaya ihtiyacimiz oldugu icinde "app" ile uygulama tanimladik.
@@ -52,12 +80,6 @@ app.use((req, res, next) => {                    //*     use komutu her istek ic
 app.listen(3000, function () {
     console.log("listening on port 3000");
 });
-
-//TODO-----------------------------------------------------------------------------------------------------------------------------------------
-//!--------------------------------------------------------------------------------------------------------------------------------------------
-//!
-//!--------------------------------------------------------------------------------------------------------------------------------------------
-
 
 //!--------------------------------------------------------------------------------------------------------------------------------------------
 
