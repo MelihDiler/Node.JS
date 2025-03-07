@@ -52,7 +52,7 @@ var fs = require("fs");                          //TODO  fs modulunu import eder
 
 var server = http.createServer((req, res) => {
     if (req.url == "/") {                        //TODO  Sorgu sadece 3000 olursa calisir.
-        res.writeHead(200, { "Content-Type": "text/html" });
+        res.writeHead(200, { "Content-Type": "text/html" });//TODO  "Content-Type": "text/html" ile tarayıcaya yanıtımın html oldugunu soylemıs oluyorum.
         //TODO  html dosyasi olusturmak yerine ilk basta ornek olmasi icin direkt yazdik. Diger sartlarda dosya okuyarak dogru bicimde gerceklestirilecek.
         res.write(`                              
             <html>
@@ -89,8 +89,8 @@ var server = http.createServer((req, res) => {
                 if (err) {                           //TODO  Egerki hata kodu donerse if blogu calisir.
                     console.log(err)
                 } else {
-                    res.statusCode = 302;            //TODO  302 ile yonlendirme gerceeklestirdik.
-                    res.setHeader("Location", "/");  //TODO  Ana sayfaya yönlendirdik.
+                    res.statusCode = 302;        //TODO  302 ile yonlendirme gerceeklestirdik.
+                    res.setHeader("Location", "/");//TODO  Ana sayfaya yönlendirdik.
                     res.end();
                 }
             })
