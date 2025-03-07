@@ -48,7 +48,7 @@ var http = require("http");                      //*     require ile http modulu
 //TODO
 //TODO-----------------------------------------------------------------------------------------------------------------------------------------
 
-const routes = require("./routes");              //TODO  Ayni dizin icindeki routes.js dosyasını cagirdik.
+const routes = require("./routes");              //TODO  Ayni dizin icindeki routes.js dosyasını cagirdik. Ayni dizinde oldugu icin .js koymadik.
 
 var server = http.createServer(routes);          //TODO  routes.js icindeki routeHandler arrow function'ı export ettigimiz icin onu direkt burada kullanabildik. Dosya adını yazdık sadace cunku o dosya icinde sadece bir tane export islemi yaptik.
 
